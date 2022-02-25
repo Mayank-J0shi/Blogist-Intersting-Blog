@@ -21,8 +21,8 @@ var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 app.use("/api/auth", authRoute);
-// app.use("/api/users", userRoute);
-// app.use("/api/posts", postRoute);
+app.use("/api/users", userRoute);
+app.use("/api/posts", postRoute);
 // app.use("/api/categories", categoryRoute);
 
 app.listen(5000, () => {
