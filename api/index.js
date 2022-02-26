@@ -9,9 +9,10 @@ const categoryRoute = require("./routes/categories");
 const multer = require("multer");
 const path = require("path");
 
-
 dotenv.config();
 app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "/images")));
+
 //connection to db
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
@@ -20,10 +21,25 @@ mongoose.connect(process.env.MONGO_URL, {
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "images");
+  },
+  filename: (req, file, cb) => {
+    // cb(null, req.body.name); for react app
+    cb(null, "test.jpg");
+  },
+});
+
+const upload = multer({ storage: storage });
+app.post("/api/upload", upload.single("file"), (req, res) => {
+  res.status(200).json("File has been uploaded");
+});
+
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
-// app.use("/api/categories", categoryRoute);
+app.use("/api/categories", categoryRoute);
 
 app.listen(5000, () => {
   console.log("Backend server is running");
