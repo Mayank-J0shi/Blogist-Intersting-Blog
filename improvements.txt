@@ -1,0 +1,10 @@
+Pages:
+    About 
+    Contact
+
+Login and Register:
+    Error handling (same email or password limit)
+
+Update settings: 
+    Error handling (if feild left unchanged the prev info
+    )
