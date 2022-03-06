@@ -6,5 +6,5 @@ Login and Register:
     Error handling (same email or password limit)
 
 Update settings: 
-    Error handling (if feild left unchanged the prev info
-    )
+    Error handling (if feild left unchanged the prev info )
+    Delete account
