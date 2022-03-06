@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     // cb(null, req.body.name); for react app
-    cb(null, "test.jpg");
+    cb(null, req.body.name);
   },
 });
 
